@@ -3,9 +3,7 @@
 <html>
     
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -22,15 +20,9 @@
     <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/lightbox.css">
-<!--
 
-
--->
   </head>
   <body>
-    <!-- Add your content here -->
-    
-  <!--header-->
   <header class="main-header clearfix" role="header">
     <div class="logo">
       <a href="./hem.html"><em>HP</em> Hjälpen</a>
@@ -52,16 +44,13 @@
       </ul>
     </nav>
   </header>
-
     </div>
     <style>
-      
         body {
         display: ruby;
         flex-direction: column;
         align-items: center;
         }
-
         #picture {
         width: auto; /* adjust this value to change the size of the image */
         height: auto;
@@ -76,7 +65,6 @@
         margin: 10px;
         }
       </style>
-      
       <div class="container">
         <p style="text-align:center;margin-top: 30%;"><img src="bilder\Agregr.png" id="picture">
         <div style="text-align:center;">
@@ -87,19 +75,15 @@
         </div>
         <div style="text-align:center;"id="message"></div>
       </div>
-
     <form>
     </form>
         <script>
             let tries = 3; // number of tries
-          
             function checkAnswer(selected) {
               // get the name of the picture
-              
               const imgElement = document.getElementById('picture');
               const src = imgElement.src;
               const letter = src.charAt(src.lastIndexOf('/') + 1).charAt(0); // extract the first letter of the name
-              
               if (letter == selected) { // check if the selected alternative is correct
                 // display a message and load a new picture
                 document.getElementById('message').innerHTML = 'Rätt!';
@@ -118,18 +102,12 @@
                   // display a message
                   document.getElementById('message').innerHTML = 'Fel. Försök kvar: ' + tries;
                 }
-            
               }
             }
           </script>
-          
           <script>
             let usedPictures = []; // array to keep track of used pictures
-
-           
-            
                 function loadPicture() {
-               
                 // create an XMLHttpRequest object
                 var xhr = new XMLHttpRequest();
                 // set the callback function to handle the response from the PHP script
