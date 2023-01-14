@@ -3,7 +3,7 @@
 $used = json_decode($_POST['used']);
 
 // Change this to the path of your image folder
-$imageFolder = 'bilder';
+$imageFolder = 'bilderMatte';
 
 // Read the contents of the image folder
 $files = scandir($imageFolder);
