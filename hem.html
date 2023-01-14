@@ -44,27 +44,35 @@
       </ul>
     </nav>
   </header>
+  
     </div>
+
     <style>
         body {
-        display: ruby;
-        flex-direction: column;
-        align-items: center;
+          display: ruby;
+          flex-direction: column;
+          align-items: center;
         }
         #picture {
-        width: auto; /* adjust this value to change the size of the image */
-        height: auto;
-        border: 5px solid rgb(0, 0, 0);
-        border-radius: 10px;
+          width: auto; /* adjust this value to change the size of the image */
+          height: auto;
+          border: 5px solid rgb(0, 0, 0);
+          border-radius: 10px;
         }
-
+        #score-counter {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+        }
         button {
-        width: 80px; /* adjust this value to change the size of the buttons */
-        height: 30px;
-        font-size: 16px; /* adjust this value to change the font size of the button text */
-        margin: 10px;
+          width: 80px; /* adjust this value to change the size of the buttons */
+          height: 30px;
+          font-size: 16px; /* adjust this value to change the font size of the button text */
+          margin: 10px;
         }
       </style>
+      <div id="score-counter"></div>
+
       <div class="container">
         <p style="text-align:center;margin-top: 30%;"><img src="bilder\Agregr.png" id="picture">
         <div style="text-align:center;">
@@ -74,11 +82,28 @@
           <button type="button" onclick="checkAnswer('D')">D</button>
         </div>
         <div style="text-align:center;"id="message"></div>
+        
+
       </div>
+      
     <form>
     </form>
         <script>
-            let tries = 3; // number of tries
+            let correctAnswers = 0;
+            let wrongAnswers = 0;
+            const triesAllowed = 2;
+            let tries = triesAllowed; // number of tries
+            function incrementCorrectAnswers() {
+              correctAnswers++;
+              updateScoreCounter();
+            }   
+            function incrementWrongAnswers() {
+              wrongAnswers++;
+              updateScoreCounter();
+            }
+            function updateScoreCounter() {
+              document.getElementById("score-counter").innerHTML = "Rätt: " + correctAnswers + " Fel: " + wrongAnswers;             
+            } 
             function checkAnswer(selected) {
               // get the name of the picture
               const imgElement = document.getElementById('picture');
@@ -87,7 +112,8 @@
               if (letter == selected) { // check if the selected alternative is correct
                 // display a message and load a new picture
                 document.getElementById('message').innerHTML = 'Rätt!';
-                tries = 3;
+                incrementCorrectAnswers();
+                tries = triesAllowed;
                 usedPictures.push(document.getElementById('picture').src);
                 loadPicture();
               } else {
@@ -95,7 +121,8 @@
                 if (tries == 0) {
                   // display a message and load a new picture
                   document.getElementById('message').innerHTML = 'Fel. Inga mer försök.';
-                  tries = 3;
+                  incrementWrongAnswers();
+                  tries = triesAllowed;
                   usedPictures.push(document.getElementById('picture').src);
                   loadPicture();
                 } else {
@@ -116,7 +143,7 @@
                     // update the src property of the img element with the response from the PHP script
                     document.getElementById('picture').src = xhr.responseText;
                     // reset the counter
-                    tries = 3;
+                    tries = 2;
                     }
                 };
                 // open the request and send the usedPictures array as a POST parameter
